@@ -1,8 +1,8 @@
 #Chatper6 Excercise
 
 #6.1
-for i in range(3,-1,-1):
-    print(i)
+answer=[i for i in range(3,-1,-1)]
+print(answer)
 
 #6.2
 

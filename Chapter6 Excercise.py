@@ -2,8 +2,7 @@
 
 #6.1
 for i in range(3,-1,-1):
-    break
-print(list(range(3,-1,-1)))
+    print(i)
 
 #6.2
 

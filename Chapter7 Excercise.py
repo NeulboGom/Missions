@@ -1,34 +1,39 @@
 #Chapter7 Excercise
 
-#7.1 출생 년도에 대한 리스트 years_lists를 만들어보자 ex) 1980,1981,1982~~
-years_lists=[1980,1981,1982,1983,1984,1985]
+#7.10 리스트 컴프리헨션을 이용하여 range(10)에서 짝수 리스트를 만들어보자
+even_number=[i for i in range(10) if i%2==0]
+print(even_number)
 
-#7.2 years_lists의 세 번째 생일은 몇 년도인가? 첫 년도는 0살이다
-print(years_lists[3])
+#7.11 줄넘기 랩 음악을 만들어보자. 일련의 두 줄 리듬을 출력한다. 프로그램의 시작부분은 다음과 같다
+start1=["fee","fie","foe"]
+rhymes=[
+    ("flop","get a mop"),
+    ("fope","turn the rope"),
+    ("fa","get your ma"),
+    ("fudge", "call the judge"),
+    ("fat","pet the cat"),
+    ("fog","walk the dog"),
+    ("fun","say we're done"),
+]
+start2="Someone better"
 
-#7.3 years_lists 중 가장 나이가 많을 때는 몇 년도인가?
-print(years_lists[-1])
+#rhymes의 각 튜플(첫 번째, 두 번째)에서
+#첫 번째: 1. start1의 각 문자열을 출력한다. 첫 글자를 대문자로 만들고, 각 단어 뒤에 느낌표와 공백을 출력한다.
+#첫 번째: 2. 이어서 rhymes의 첫 번째 문자열의 단어 역시 첫 글자를 대문자로 만들고 대문자를 출력한다.
 
-#7.4 "mozzarella", "cinderella", "salmonella" 세 문자열을 요소로 갖는 "things" 리스트를 만들어보자
-things=["mozzarella", "cinderella", "salmonella"]
-
-#7.5 things 리스트에서 사람 이름의 첫 글자를 대문자로 바꿔서 출력해보자. 그러면 리스트의 요소가 변경되는가?
-things[1]=things[1].capitalize()
-print(things)
-
-#7.6 things 리스트의 치즈 요소를 모두 대문자로 바꿔서 출력해보자
-things[0]=things[0].upper()
-print(things)
-
-#7.7 things 리스트에 질병 요소가 있다면 제거한 뒤 리스트를 출력해보자
-things.pop(2)
-print(things)
-
-#7.8 "Groucho", "Chico", "Harpo" 세 문자열 요소를 갖는 surprise 리스트를 만들어보자
-surprise=["Groucho","Chico","Harpo"]
-
-#7.9 surprise 리스트의 마지막 요소를 소문자로 변경하고, 단어를 뒤집은 다음에 첫 글자를 대문자로 바꿔보자
-surprise[-1]=surprise[-1].lower()
-surprise[-1]=surprise[-1][-1::-1]
-surprise[-1]=surprise[-1].capitalize()
-print(surprise)
+#두 번째: 1. start2와 공백을 출력한다.
+#두 번째: 2. 두 번째 문자열과 마침표를 출력한다.
+'''
+start1=[start1[i].capitalize() for i in range(len(start1))]
+delimiter="! "
+exclamed_start1=delimiter.join(start1)+'! '
+print(start1)
+print(exclamed_start1)
+'''
+for (j,k) in rhymes:
+    # start1=["fee","fie","foe"]
+    for i in start1:
+        print(i.capitalize(), end='! ')
+    print(j.capitalize(), end='! \n')
+    print(start2, end=' ')
+    print(k, end='. \n')

@@ -30,10 +30,23 @@ exclamed_start1=delimiter.join(start1)+'! '
 print(start1)
 print(exclamed_start1)
 '''
+
 for (j,k) in rhymes:
-    # start1=["fee","fie","foe"]
     for i in start1:
         print(i.capitalize(), end='! ')
     print(j.capitalize(), end='! \n')
     print(start2, end=' ')
     print(k, end='. \n')
+
+
+# 다른 방법 zip() 이용하기
+cap_start1=[i.capitalize()+"! " for i in start1]
+real_start1=" ".join(cap_start1)
+start2="".join(list(start2))
+for (j,k) in rhymes:
+    cap_rhymes=[j.capitalize()+"! "]
+    stop_rhymes=[k+". "]
+    for rhyme1, rhyme2 in zip(cap_rhymes, stop_rhymes):
+        print(real_start1,rhyme1+'\n'+start2,rhyme2)
+
+

@@ -42,33 +42,45 @@ print(Sharp.eats())
 #      Robot 클래스의 객체가 갖고 있는 내용을 출력하는 does() 메서드를 정의한다.
 
 class Laser():
-    def __init__(self, name, action):
-        self.name = name
-        self.action = action
+    def __init__(self):
+        self.name = "Lazer"
+        self.action = "distintegrate"
 
     def does(self):
         return f"'{self.action}' ({self.name})"
 
 class Claw():
-    def __init__(self, name, action):
-        self.name = name
-        self.action = action
+    def __init__(self):
+        self.name = "Claw"
+        self.action = "crush"
 
     def does(self):
         return f"'{self.action}' ({self.name})"
 
 class SmartPhone():
-    def __init__(self, name, action):
-        self.name = name
-        self.action = action
+    def __init__(self):
+        self.name = "Smart Phone"
+        self.action = "ring"
 
     def does(self):
         return f"'{self.action}' ({self.name})"
 
-laser = Laser("Laser","distintegrate")
-claw = Claw("Claw", "crush")
-smartphone = SmartPhone("Smart Phone", "ring")
+laser = Laser()
+claw = Claw()
+smartphone = SmartPhone()
 
 print(laser.does())
 print(claw.does())
 print(smartphone.does())
+
+class Robot():
+    def __init__(self):
+        self.laser = Laser()
+        self.claw =  Claw()
+        self.smartphone = SmartPhone()
+
+    def does(self):
+        print(self.laser.does(), self.claw.does(), self.smartphone.does())
+
+robot=Robot()
+robot.does()

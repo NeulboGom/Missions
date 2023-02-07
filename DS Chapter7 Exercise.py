@@ -1,16 +1,17 @@
-# Exercise 01 유명 맛집의 대기줄 구현하기
+# Exercise 02 콜센터의 응답 대기 시간 계산하기
 
-front, rear = -1, 4
-SIZE = 5
-queue = ['정국', '뷔', '지민', '지민', '슈가']
+SIZE = 6
+front, rear = 0, 0
+queue = [None for _ in range(SIZE)]
 
 
 def isqueue_full():
     global SIZE, queue, front, rear
-    if rear == SIZE - 1:
+    if (rear + 1) % SIZE == front:
         return True
     else:
         return False
+
 
 def isqueue_empty():
     global SIZE, queue, front, rear
@@ -23,18 +24,15 @@ def isqueue_empty():
 def peek():
     global SIZE, queue, front, rear
     if isqueue_empty():
-        print("No data in queue")
         return
-    else:
-        return queue[front+1]
+    return queue[front + 1]
 
 
 def en_queue(data):
     global SIZE, queue, front, rear
     if isqueue_full():
-        print("queue is full!")
         return
-    rear += 1
+    rear = (rear + 1) % SIZE
     queue[rear] = data
 
 
@@ -42,24 +40,23 @@ def de_queue(data):
     global SIZE, queue, front, rear
     if isqueue_empty():
         return None
-    front += 1
+    front = (front + 1) % SIZE
     data = queue[front]
     queue[front] = None
-
-    for i in range(front + 1, SIZE):
-        queue[i - 1] = queue[i]
-        queue[i] = None
-    front -= 1
-    rear -= 1
-
     return data
 
 
-while True:
-    print(f"대기 줄 상태: {queue}")
-    print(f"{queue[0]} 님 식당에 들어감")
-    de_queue(queue[0])
-    if isqueue_empty():
-        print(f"대기 줄 상태: {queue}")
-        print("식당 영업 종료!")
-        break
+call_list = [("사용", 9), ("고장", 3), ("환불", 4), ("환불", 4), ("고장", 3)]
+
+time = 0
+
+for i in call_list:
+    print(f"귀하의 대기 예상 시간은 {time}분 입니다.")
+    print(f"현재 대기 콜 --> {queue}")
+    print()
+    en_queue(i)
+    time += i[1]
+
+
+print(f"최종 대기 콜 --> {queue}")
+print("프로그램 종료!")

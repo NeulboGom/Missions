@@ -5,26 +5,18 @@ stud_list = [["선미", 88], ["초아", 99], ["화사", 71], ["영탁", 78], ["�
 
 
 ## 함수 선언 부분 ##
-def quick_sort(ls):
+
+def insertion_sort(ls):
     n = len(ls)
-    if n <= 1:
-        return ls
-
-    pivot = ls[n//2]
-    left_ls, right_ls, middle_ls = [], [], []
-
-    for i in range(n):
-        if ls[i][1] < pivot[1]:
-            left_ls.append(ls[i])
-        elif ls[i][1] > pivot[1]:
-            right_ls.append(ls[i])
-        else:
-            middle_ls.append(ls[i])
-    return quick_sort(left_ls) + middle_ls + quick_sort(right_ls)
+    for i in range(1, n):
+        for cur in range(i, 0, -1):
+            if ls[cur-1][1] > ls[cur][1]:
+                ls[cur-1], ls[cur] = ls[cur], ls[cur-1]
+    return ls
 
 
 print(f"정렬 전 --> {stud_list}")
-sort_stud_list = quick_sort(stud_list)
+sort_stud_list = insertion_sort(stud_list)
 print(f"정렬 후 --> {sort_stud_list}")
 print("##성적별 조 편성표##")
 for i in range(len(stud_list) // 2):

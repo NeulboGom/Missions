@@ -1,23 +1,34 @@
-# Chapter11 Exercise01 성적 별로 조 편성하기
+# Chapter11 Exercise02 2차원 배열의 중앙값 찾기
 
-## 전역 함수 선언 부분 ##
-stud_list = [["선미", 88], ["초아", 99], ["화사", 71], ["영탁", 78], ["영웅", 67], ["민호", 92]]
+matrix = [[55, 33, 250, 44],
+          [88, 1, 76, 23],
+          [199, 222, 38, 47],
+          [155, 145, 20, 99]]
 
 
-## 함수 선언 부분 ##
+def mtx_to_list(mtx):
+    mtx_list = []
+    for i in range(len(mtx)):
+        for j in range(len(mtx[i])):
+            mtx_list.append(matrix[i][j])
+    return mtx_list
+
+
+new_list = mtx_to_list(matrix)
+print(f"1차원 변경 후, 정렬 전 --> {new_list}")
+
 
 def insertion_sort(ls):
     n = len(ls)
-    for i in range(1, n):
-        for cur in range(i, 0, -1):
-            if ls[cur-1][1] > ls[cur][1]:
-                ls[cur-1], ls[cur] = ls[cur], ls[cur-1]
+    for end in range(n):
+        for cur in range(end,0, -1):
+            if ls[cur - 1] > ls[cur]:
+                ls[cur - 1], ls[cur] = ls[cur], ls[cur - 1]
     return ls
 
 
-print(f"정렬 전 --> {stud_list}")
-sort_stud_list = insertion_sort(stud_list)
-print(f"정렬 후 --> {sort_stud_list}")
-print("##성적별 조 편성표##")
-for i in range(len(stud_list) // 2):
-    print(f"{sort_stud_list[i][0]} : {sort_stud_list[-1-i][0]}")
+new_sort_list = insertion_sort(new_list)
+
+
+print(f"1차원 변경 후, 정렬 후 --> {new_sort_list}")
+print(f"중앙값 --> {new_sort_list[len(new_sort_list) // 2]}")

@@ -14,26 +14,29 @@ print(f"# 오늘 판매된 물품 종류(중복X) --> {today_list}")
 
 
 def binary_search(ls, searching_data):
-    idx = -1
     start = 0
     end = len(ls) - 1
     while start <= end:
         mid = (start + end) // 2
         if ls[mid] == searching_data:
-            idx = mid
+            return mid
         elif ls[mid] < searching_data:
             start = mid + 1
         elif ls[mid] > searching_data:
             end = mid - 1
 
-    return idx
-
+    return -1
 
 
 final_sell_list = []
-count = 0
 for stuff in today_list:
-   count = today_list_sorted.count(stuff)
-   final_sell_list.append((stuff, count))
+    position = 0
+    count = 0
+    while position != -1:
+        position = binary_search(today_list_notsorted, stuff)
+        if position != -1:
+            count += 1
+            del(today_list_notsorted[position])
+    final_sell_list.append((stuff, count))
 
 print(f"결산 결과 --> {final_sell_list}")
